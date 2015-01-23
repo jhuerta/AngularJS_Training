@@ -11,16 +11,16 @@
 
     function routerProvider($routeProvider) {
         $routeProvider.
-        when('/', {
-            templateUrl: 'Partials/View1.html',
-            controller: 'SimpleController'
-        })
+            when('/', {
+                templateUrl: 'Partials/View1.html',
+                controller: 'SimpleController'
+            })
             .when('/view2', {
                 templateUrl: 'Partials/View2.html',
                 controller: 'SimpleController'
             })
             .when('/view3', {
-                templateUrl: 'Partials/View2.html',
+                templateUrl: 'Partials/View3.html',
                 controller: ''
             })
             .otherwise({
@@ -29,7 +29,7 @@
     }
 
     function simpleController($scope) {
-        $scope.initialCustomers = [{
+        $scope.customers = [{
             name: 'Juan',
             city: 'Aranda'
         }, {
@@ -50,7 +50,7 @@
         }];
 
         $scope.addCustomer = function() {
-            $scope.initialCustomers.push({
+            $scope.customers.push({
                 name: $scope.newCustomer.name,
                 city: $scope.newCustomer.city
             });

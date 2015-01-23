@@ -5,7 +5,9 @@
 	<input type="text" data-ng-model="name"/>
 	<br/>
 	<ul>
-		<li ng-repeat="cust in customers | filter:city | orderBy: name"></li>
+		<li ng-repeat="customer in customers | filter:name | orderBy:name">
+			{{customer.city}} - {{customer.name | uppercase}}
+		</li>
 	</ul>
 
 	<a href="#/">Home</a>
