@@ -1,0 +1,13 @@
+<div class="container">
+	<h2>View 2</h2>
+	Name:
+	<br/>
+	<input type="text" data-ng-model="name"/>
+	<br/>
+	<ul>
+		<li ng-repeat="cust in customers | filter:city | orderBy: name"></li>
+	</ul>
+
+	<a href="#/">Home</a>
+	<a href="#/view3">View 3</a>
+</div>

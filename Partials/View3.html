@@ -1,0 +1,14 @@
+<div>
+	Name <input type="text" ng-model='filter'/>{{filter}}
+</div>
+<div ng-init="customers=[ {name:'Dave', city:'New York'},{name:'Napur', city:'San Francisco'},{name:'Heedy', city:'Bern'},{name:'Shriva', city:'Boston'}]">
+	<h3>Looping with the ng-repeat Directive</h3>
+	<ul>
+		<li ng-repeat=" (index,customer) in customers | filter:filter | orderBy:'city'">
+			{{ index }}.{{customer.name }} ({{customer.city | uppercase}})
+		</li>
+	</ul>
+</div>
+
+<a href="#/">Home</a>
+<a href="#/view3">View 2</a>
