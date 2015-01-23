@@ -1,6 +1,11 @@
 (function() {
+
     var app = angular.module('learningAngularJS', []);
-    app.controller('SimpleController', simpleController);
+    var controllers = {};
+    controllers.SimpleController = simpleController;
+
+    
+    app.controller(controllers);
 
     function simpleController($scope) {
         $scope.initialCustomers = [{
