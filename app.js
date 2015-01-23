@@ -1,17 +1,22 @@
 (function() {
 
-    var app = angular.module('learningAngularJS', ['ngRoute']);
+    var app = angular
+        .module('learningAngularJS', ['ngRoute']);
 
     var controllers = {};
-
-    controllers.SimpleController = simpleController;
+    var factories = {};
 
     app.controller(controllers);
+    app.factory(factories);
+
+    factories.customerFactory = customerFactoryHarcodedValues;
+    controllers.SimpleController = simpleController;
+
     app.config(routerProvider);
 
     function routerProvider($routeProvider) {
         $routeProvider.
-            when('/', {
+        when('/', {
                 templateUrl: 'Partials/View1.html',
                 controller: 'SimpleController'
             })
@@ -28,8 +33,23 @@
             })
     }
 
-    function simpleController($scope) {
-        $scope.customers = [{
+    function simpleController($scope, customerFactory) {
+
+        $scope.customers = customerFactory.getCustomers();
+
+        $scope.addCustomer = function() {
+            customerFactory.postCustomer($scope.newCustomer);
+            // Substituing here the code and using the 
+            // $scope.customers.push({
+            //     name: $scope.newCustomer.name,
+            //     city: $scope.newCustomer.city
+            // });
+        }
+    }
+
+    function customerFactoryHarcodedValues() {
+        var customersDb = {};
+        var customers = [{
             name: 'Juan',
             city: 'Aranda'
         }, {
@@ -48,13 +68,17 @@
             name: 'Santiago',
             city: 'Zaragoza'
         }];
+        customersDb.getCustomers = function() {
+            // Here your db async call
+            return customers;
+        };
+        customersDb.postCustomer = function(customer) {
+            // Here your call to the db
+            customers.push({name:customer.name,city:customer.city});
 
-        $scope.addCustomer = function() {
-            $scope.customers.push({
-                name: $scope.newCustomer.name,
-                city: $scope.newCustomer.city
-            });
-        }
+        };
+
+        return customersDb;
     }
 
 
